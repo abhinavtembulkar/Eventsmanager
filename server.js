@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const hbs = require('hbs')
+const PORT = process.env.PORT || 8000
 
 const mysession = require('express-session')
 const {check,validationResult}= require('express-validator')
@@ -282,6 +283,6 @@ const removeDB = (list,colls) => {
     return truth
 }
 
-app.listen(8000,()=>{
+app.listen(PORT,()=>{
     console.log('listening on port 8000')
 })
