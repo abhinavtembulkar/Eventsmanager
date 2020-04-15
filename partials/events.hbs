@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Events list</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/checkout/">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+    <style>
+      section{
+          height: auto;
+          width:'100%';
+          background-color: rgb(180, 65, 65);
+          border: rgb(214, 19, 19) 5px solid;
+      }
+    </style>
+  </head>
+  <body style="background-color: rgb(34, 33, 33);">
+    <div class="container">
+  <div class="py-5 text-center">
+    <h2 style="color: aliceblue;">Events registration</h2>
+    <p style="color: aliceblue;">Kindly fill the below form to register your event at our site !</p>
+  </div>
+
+  <div class="row" style="color: aliceblue;">
+    <div style="color: black;" class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text" style="color: darkgrey;">Your previous events</span>
+        <span class="badge badge-secondary badge-pill">{{events.length}}</span>
+      </h4>
+
+      <ul class="list-group mb-3">
+        {{#if events}}
+        {{#each events}}
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">{{this.eventname}}</h6>
+            <small class="text-muted">{{this.location}}</small>
+          </div>
+          <span class="text-muted">{{this.datetimes}}</span>
+        </li>
+        {{/each}}
+        {{else}}
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">No Events YET!</h6>
+            <small class="text-muted">PLEASE ADD MORE EVENTS</small>
+          </div>
+        </li>
+        {{/if}}
+        
+      </ul>
+
+      <a href="/display" class="btn btn-success btn-lg btn-block">View all</a>
+      <hr class="mb-4">
+
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Event detail</h4>
+        {{#if errors}}
+        <section class="errors">
+          <ul>
+            {{#each errors}}
+              <li style="padding: 5px;">{{this.param}} : {{{this.msg}}}</li>
+            {{/each}}
+          </ul>
+        </section>
+        {{/if}}
+      <form action="/events" method="post">
+        <div class="row">
+          <div class="col-md-3 mb-3 col-lg-12">
+            <label for="firstName">Event Name</label>
+            <input name="eventname" type="text" class="form-control" id="firstName" placeholder="" value="" >
+          </div>
+          <div class="col-md-3 mb-3 col-lg-12">
+            <label for="dates">Select Dates</label>
+            <div class="input-group">
+              <input name="datetimes" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="username">Description</label>
+          <div class="input-group">
+            <textarea  name="description" rows="7" id="mbox" class="form-control" placeholder="Event description"></textarea>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Contact Email <span class="text-muted">(Optional)</span></label>
+          <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 mb-3 col-lg-12">
+            <label for="zip">Contact No.</label>
+            <input type="text" name="contact" class="form-control" id="zip" placeholder="">
+          </div>          
+
+          <div class="col-md-5 mb-3 col-lg-12">
+            <label for="address">Location</label>
+            <input type="text" name="location" class="form-control" id="address" placeholder="1234 Main St">
+          </div>
+
+          <div class="col-md-4 mb-3 col-lg-12">
+            <label for="state">State</label>
+            <select name="states" class="custom-select d-block w-100" id="state">
+              <option value="">Choose...</option>
+              <option>Delhi</option>
+              <option>Mahrashtra</option>
+              <option>Uttar Pradesh</option>
+              <option>Punjab</option>
+            </select>
+          </div>       
+          
+        </div>
+        
+        <hr class="mb-4">
+        <button name="submission" class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020 Events management app</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+$(function() {
+  $('input[name="datetimes"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    maxYear: 2100,
+    minYear: parseInt(moment().format('YYYY'),10)
+  });
+});
+</script>
+</body>
+</html>

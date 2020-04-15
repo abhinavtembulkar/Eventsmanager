@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Signup</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body{
+            color:azure;
+        }
+
+        section{
+          height: auto;
+          width:'100%';
+          background-color: rgb(180, 65, 65);
+          border: rgb(214, 19, 19) 5px solid;
+        }
+    </style>
+    
+  </head>
+
+  <body class="bg-dark">
+    <div class="container">
+  <div class="py-5 text-center">
+    <h2>SIGNUP form</h2>
+    <p class="lead">Fill all the details in below form to get started on our event managements site !</p>
+    {{#if success}}
+    <section class="success">
+      <h2>Successful Validation</h2>
+    </section>
+    {{else}}
+    {{#if errors}}
+    <section class="errors">
+      <ul>
+        {{#each errors}}
+          <li style="padding: 5px;">{{this.param}} : {{{this.msg}}}</li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+    {{/if}}
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Personal Details</h4>
+      <form method="post" action='/signup'>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" name="firstname" placeholder="Name/nickname">
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" name="lastname" placeholder="(Optional)">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="emailo">Email</label>
+          <input type="email" class="form-control" name="email" placeholder="you@example.com">
+        </div>
+
+        <div class="mb-3">
+          <label for="password">Password </label>
+          <input type="password" class="form-control" name="password" placeholder="xxxxxxxxxx">
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to Login</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020 </p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Help</a></li>
+      <li class="list-inline-item"><a href="mailto:abhinavtembulkar@gmail.com">Support</a></li>
+    </ul>
+  </footer>
+</div>          
+</body>
+</html>
